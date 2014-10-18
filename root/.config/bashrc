@@ -1,0 +1,132 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+# History settings
+HISTCONTROL=ignoreboth
+HISTSIZE=1000000
+HISTFILESIZE=1000000
+HISTIGNORE='history:hist'
+shopt -s histappend
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# Auto cd when entering just a path
+shopt -s autocd
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# Set PS1
+PS1='\[\033[33m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+
+# enable color support of ls
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
+# Enable programmable completion features
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+# Add ~/bin to path
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# Set editor
+export EDITOR="vim"
+
+# Coloured man pages
+man() {
+    env LESS_TERMCAP_mb=$'\E[01;31m' \
+    LESS_TERMCAP_md=$'\E[01;38;5;74m' \
+    LESS_TERMCAP_me=$'\E[0m' \
+    LESS_TERMCAP_se=$'\E[0m' \
+    LESS_TERMCAP_so=$'\E[38;5;246m' \
+    LESS_TERMCAP_ue=$'\E[0m' \
+    LESS_TERMCAP_us=$'\E[04;38;5;146m' \
+    man "$@"
+}
+
+# Set XDG dirs
+export XDG_CONFIG_HOME=~/.config/
+export XDG_CACHE_HOME=~/.cache/
+
+# Set vimrc's location and source it on vim startup
+export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+
+# Dont display ^C
+stty -ctlecho
+
+# Command not found hook (requires pkgfile)
+source /usr/share/doc/pkgfile/command-not-found.bash
+
+################
+# Bash aliases #
+################
+
+# cd
+#
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# pacman
+#
+alias pacu='pacman -Syu'
+alias paci='pacman -S'
+alias pacr='pacman -Rs'
+alias pacrf='pacman -Rns'
+alias pacs='pacman -Ss'
+
+# systemd
+#
+alias sc='systemctl'
+alias scu='systemctl --user'
+alias jc='journalctl'
+alias journ='journalctl -b -n 500 -f'
+
+# grep
+#
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias pg='ps -Af | grep $1'
+alias hist='history | grep'
+
+# ls
+#
+alias ls='ls -lh --color=auto'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+
+# vi
+#
+alias vi='vim'
+
+# git
+alias gita='git add'
+alias gitc='git commit -a'
+alias gitp='git push'
+alias gits='git log --graph --oneline --decorate; echo; git status; echo'
+
+# misc aliases
+alias df='df -h -t ext4'
+alias du='du -h --max-depth=1 | sort -hr'
+alias lsblk='lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL,UUID'
+alias strc="awk '!/^ *#/ && NF'"
+
