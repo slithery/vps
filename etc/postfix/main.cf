@@ -676,5 +676,8 @@ smtpd_tls_key_file = /root/certs/private/slithery.uk-decrypted.key
 smtpd_recipient_restrictions=
   permit_mynetworks
   permit_sasl_authenticated
+  reject_unknown_client_hostname
+  reject_unknown_sender_domain
+  reject_unauth_pipelining
   reject_unauth_destination
 
