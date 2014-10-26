@@ -1,0 +1,13 @@
+; slithery.uk [623993]
+$TTL 3600
+@   IN  SOA ns1.linode.com. sysadmin.slithery.uk. 2014102634 14400 14400 1209600 3600
+@       NS  ns1.linode.com.
+@       NS  ns2.linode.com.
+@       NS  ns3.linode.com.
+@       NS  ns4.linode.com.
+@       NS  ns5.linode.com.
+@           MX  10  black.slithery.uk.
+@           A   212.111.41.177
+black           A   212.111.41.177
+repo            CNAME   black.slithery.uk.
+www         CNAME   black.slithery.uk.
