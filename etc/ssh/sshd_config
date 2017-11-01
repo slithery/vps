@@ -11,7 +11,7 @@
 # default value.
 
 Port 22222
-#AddressFamily any
+AddressFamily inet
 #ListenAddress 0.0.0.0
 #ListenAddress ::
 
@@ -69,7 +69,7 @@ AuthorizedKeysFile	.ssh/authorized_keys
 #IgnoreRhosts yes
 
 # To disable tunneled clear text passwords, change to no here!
-PasswordAuthentication no
+#PasswordAuthentication no
 #PermitEmptyPasswords no
 
 # Change to no to disable s/key passwords
@@ -97,11 +97,11 @@ ChallengeResponseAuthentication no
 UsePAM yes
 
 #AllowAgentForwarding yes
-#AllowTcpForwarding yes
+AllowTcpForwarding yes
 #GatewayPorts no
-#X11Forwarding no
-#X11DisplayOffset 10
-#X11UseLocalhost yes
+X11Forwarding yes
+X11DisplayOffset 10
+X11UseLocalhost yes
 #PermitTTY yes
 PrintMotd no # pam does that
 #PrintLastLog yes
@@ -110,7 +110,7 @@ PrintMotd no # pam does that
 UsePrivilegeSeparation sandbox		# Default for new installations.
 #PermitUserEnvironment no
 #Compression delayed
-#ClientAliveInterval 0
+ClientAliveInterval 120
 #ClientAliveCountMax 3
 #UseDNS yes
 #PidFile /run/sshd.pid

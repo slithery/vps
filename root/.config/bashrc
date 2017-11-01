@@ -129,4 +129,9 @@ alias df='df -h -t ext4'
 alias du='du -h --max-depth=1 | sort -hr'
 alias lsblk='lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL,UUID'
 alias strc="awk '!/^ *#/ && NF'"
+alias cl='clear'
+
+
+haste() { a=$(cat); curl -X POST -s -d "$a" http://paste.slithery.uk/documents | awk -F '"' '{print "http://paste.slithery.uk/"$4}'; }
+
 

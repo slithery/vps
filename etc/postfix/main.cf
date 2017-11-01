@@ -492,8 +492,8 @@ alias_database = $alias_maps
 # as undeliverable.
 #
 # The following expansions are done on luser_relay: $user (recipient
-# username), $shell (recipient shell), $home (recipient home directory),
-# $recipient (full recipient address), $extension (recipient address
+    # USERNAME), $SHEll (recipient shell), $home (recipient home directory),
+    # $recipient (full recipient address), $extension (recipient address
 # extension), $domain (recipient domain), $local (entire recipient
 # localpart), $recipient_delimiter. Specify ${name?value} or
 # ${name:value} to expand value only when $name does (does not) exist.
@@ -670,7 +670,7 @@ smtpd_sasl_type = dovecot
 smtpd_sasl_path = private/auth
 smtpd_sasl_auth_enable = yes
 smtpd_tls_security_level = may
-smtpd_tls_auth_only = yes
+smtpd_tls_auth_only = no
 smtpd_tls_cert_file = /root/certs/public/slithery.uk-unified.crt
 smtpd_tls_key_file = /root/certs/private/slithery.uk-decrypted.key
 smtpd_recipient_restrictions=
